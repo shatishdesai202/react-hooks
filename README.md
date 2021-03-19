@@ -8,11 +8,11 @@
 
 => const [currentStateValue, functionToUpdateState] = useState(initialStateValue);
 
-useEffect
+## useEffect
 
 => We can use this effect to replicate events like componentDidUpdate, componentDidMount, componentWillUnmount and shouldComponentUpdate
 
-useContext
+## useContext
 
 => useContext hook allows passing data to children elements without using redux.
 
@@ -20,7 +20,7 @@ useContext
 
 => Just Create context through createContext and use through useContext
 
-useCallback - simmular(useMemo)
+## useCallback - similar(useMemo)
 
 => React's useCallback Hook can be used to optimize the rendering behavior of your React function components.
 => useCallback is hook that will return a memoized version of the callback function that only change if one of the dependencies has changed.
@@ -30,7 +30,7 @@ useCallback - simmular(useMemo)
 => Returns a memoized callback.
 
 
-useLayoutEffect
+## useLayoutEffect - similar(useEffect)
 => useLayoutEffect has the very same signature as useEffect
 => The function passed to useEffect fires after layout and paint. i.e after the render has been committed to the screen.
 
@@ -57,11 +57,11 @@ React renders your component (calls it)
 useLayoutEffect runs, and React waits for it to finish.
 The screen is visually updated
 
-useMemo
+## useMemo
 => Returns a memoized value.
 => This prevents the needless re-render.
 
-useRef
+## useRef
 
 => returns a 'ref' object.
 => const refContainer = useRef(initialValueToBePersisted)
@@ -69,11 +69,10 @@ useRef
 => values are accessed from the .current property of the returned object.
 => The.current property could be initialised to an initial value e.g. useRef(initialValue)
 => The object is persisted for the entire lifetime of the component.
-
 => Accessing the DOM nodes or React elements
 => Instance Like Variables (Generic Container)
 => More Info -> https://react-hooks-cheatsheet.com/useRef
 
 
-useReducer
+## useReducer
 => useReducer is one of a handful of React hooks that shipped in React 16.7. 0. It accepts a reducer function with the application initial state, returns the current application state, then dispatches a function.
