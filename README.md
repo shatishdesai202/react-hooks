@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Hooks In React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+useState
 
-## Available Scripts
+=> useState hook is a function which is used to store state value in a functional component. It accepts an argument as the initial value of the state. It returns an array with 2 elements. First element is the current value of state. Second element is a function to update the state.
 
-In the project directory, you can run:
+=> import React, {useState} from "react";
 
-### `npm start`
+=> const [currentStateValue, functionToUpdateState] = useState(initialStateValue);
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+useEffect
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+=> We can use this effect to replicate events like componentDidUpdate, componentDidMount, componentWillUnmount and shouldComponentUpdate
 
-### `npm test`
+useContext
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+=> useContext hook allows passing data to children elements without using redux.
 
-### `npm run build`
+=> It’s an easy alternative to Redux if we just need to pass the data to the children elements.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+=> Just Create context through createContext and use through useContext
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+useCallback - simmular(useMemo)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+=> React's useCallback Hook can be used to optimize the rendering behavior of your React function components.
+=> useCallback is hook that will return a memoized version of the callback function that only change if one of the dependencies has changed.
+=> performance optimization hook
+=> why we use Callback
+=> it is useful when passing callbacks to optimized child component that rely on reference equality to prevent unnecesary renders. 
+=> Returns a memoized callback.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+useLayoutEffect
+=> useLayoutEffect has the very same signature as useEffect
+=> The function passed to useEffect fires after layout and paint. i.e after the render has been committed to the screen.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Q. Where You can use useLayoutEffect
+A. There are cases where you may not want the behaviour useEffect provides. e.g. if you need to make a visual change to the DOM as a side effect. To prevent the user from seeing flickers of changes, you may use useLayoutEffect
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+=> The function passed to useLayoutEffect will be run before the browser updates the screen.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+The Difference Between useEffect and useLayoutEffect
+It’s all in the timing.
 
-## Learn More
+useEffect runs asynchronously and after a render is painted to the screen.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+So that looks like:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+You cause a render somehow (change state, or the parent re-renders)
+React renders your component (calls it)
+The screen is visually updated
+THEN useEffect runs
+useLayoutEffect, on the other hand, runs synchronously after a render but before the screen is updated. That goes:
 
-### Code Splitting
+You cause a render somehow (change state, or the parent re-renders)
+React renders your component (calls it)
+useLayoutEffect runs, and React waits for it to finish.
+The screen is visually updated
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+useMemo
+=> Returns a memoized value.
+=> This prevents the needless re-render.
 
-### Analyzing the Bundle Size
+useRef
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+=> returns a 'ref' object.
+=> const refContainer = useRef(initialValueToBePersisted)
+=> Value is persisted(સતત) in the refContainer.current property.
+=> values are accessed from the .current property of the returned object.
+=> The.current property could be initialised to an initial value e.g. useRef(initialValue)
+=> The object is persisted for the entire lifetime of the component.
 
-### Making a Progressive Web App
+=> Accessing the DOM nodes or React elements
+=> Instance Like Variables (Generic Container)
+=> More Info -> https://react-hooks-cheatsheet.com/useRef
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+useReducer
+=> useReducer is one of a handful of React hooks that shipped in React 16.7. 0. It accepts a reducer function with the application initial state, returns the current application state, then dispatches a function.
